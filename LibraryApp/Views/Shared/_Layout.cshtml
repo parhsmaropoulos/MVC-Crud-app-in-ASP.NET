@@ -3,27 +3,149 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title -MVC Library</title>
+    @Styles.Render("~/Content/assets/css/main.css")
     @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/Content/assets/css/noscript.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body class="is-preload">
+
+    <!-- Header -->
+    <section id="header">
+        <header>
+            <h1>MVC Library</h1>
+            <h5>By Paris</h5>
+        </header>
+        <footer>
+            <a href="#banner" class="button style2 scrolly-middle">Proceed</a>
+        </footer>
+    </section>
+
+    <!-- Banner -->
+    <section id="banner">
+        <header>
+            <h2>Lib App</h2>
+        </header>
+        <p>
+            Welcome to the MVC app for Library administration.<br />
+            Create delete update or view anything you want.
+            Login for more information.<br />
+        </p>
+        <footer>
+            <a href="#first" class="button style2 scrolly">View activities</a>
+        </footer>
+    </section>
+
+    <!-- Feature 1 -->
+    <article id="first" class="container box style1 right">
+        <a href="@Url.Action("Index", "Tracks")" class="image fit"><img src="~/Content/assets/css/images/disk.jpg" alt="" /></a>
+        <div class="inner">
+            <header>
+                <h2>
+                    Find your favourite track,<br />
+                    artist or album.
+                </h2>
+            </header>
+        </div>
+    </article>
+
+    <!-- Feature 2 -->
+    <article class="container box style1 left">
+        <a href="#" class="image fit"><img src="~/Content/assets/css/images/admin.jpg" alt="" /></a> <!-- TODO hred loginform.-->
+        <div class="inner">
+            <header>
+                <h2>
+                    Update delete or edit<br />
+                    any record you want!
+
+                </h2>
+            </header>
+            <p>Insert new album or tracks update the info or delete anything that is not useable anymore.</p>
+        </div>
+    </article>
+
+    <!-- Portfolio -->
+    <article class="container box style2">
+        <header>
+            <h2>Get reports!</h2>
+            <p>
+                Find out about the top selling artist<br />
+                categories or tracks and get a copy of the record.
+            </p>
+        </header>
+        <div class="inner gallery">
+            <div class="row gtr-0">
+                <div class="col-3 col-12-mobile"><a href="images/fulls/01.jpg" class="image fit"><img src="images/thumbs/01.jpg" alt="" title="Ad infinitum" /></a></div>
+                <div class="col-3 col-12-mobile"><a href="images/fulls/02.jpg" class="image fit"><img src="images/thumbs/02.jpg" alt="" title="Dressed in Clarity" /></a></div>
+                <div class="col-3 col-12-mobile"><a href="images/fulls/03.jpg" class="image fit"><img src="images/thumbs/03.jpg" alt="" title="Raven" /></a></div>
+                <div class="col-3 col-12-mobile"><a href="images/fulls/04.jpg" class="image fit"><img src="images/thumbs/04.jpg" alt="" title="I'll have a cup of Disneyland, please" /></a></div>
+            </div>
+            <div class="row gtr-0">
+                <div class="col-3 col-12-mobile"><a href="images/fulls/05.jpg" class="image fit"><img src="images/thumbs/05.jpg" alt="" title="Cherish" /></a></div>
+                <div class="col-3 col-12-mobile"><a href="images/fulls/06.jpg" class="image fit"><img src="images/thumbs/06.jpg" alt="" title="Different." /></a></div>
+                <div class="col-3 col-12-mobile"><a href="images/fulls/07.jpg" class="image fit"><img src="images/thumbs/07.jpg" alt="" title="History was made here" /></a></div>
+                <div class="col-3 col-12-mobile"><a href="images/fulls/08.jpg" class="image fit"><img src="images/thumbs/08.jpg" alt="" title="People come and go and walk away" /></a></div>
+            </div>
+        </div>
+    </article>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("MVC Library", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tracks
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Tracks", "Index", "Tracks")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Genres", "Index", "Genres")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Play Lists", "Index", "Playlists")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Media Types", "Index", "MediaTypes")</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Artists
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Artists", "Index", "Artists")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Albums", "Index", "Albums")</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Individuals
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Customers", "Index", "Customers")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Employees", "Index", "Employees")</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Invoices
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Invoices", "Index", "Invoices")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Invoice Lines", "Index", "InvoiceLines")</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reports
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="~/WebForm/Top10Tracks.aspx">Top 10 Tracks</a></li>
+                            <li><a class="dropdown-item" href="~/WebForm/TopSellingArtist.aspx">Top Selling Artist</a></li>
+                            <li><a class="dropdown-item" href="~/WebForm/TopArtist.aspx">Top Rated Categories</a></li>
+                        </ul>
+                    </li>
                 </ul>
+
             </div>
         </div>
     </div>
@@ -31,12 +153,20 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - MVC Library</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/Content/assets/js/jquery.min.js")
+    @Scripts.Render("~/Content/assets/js/jquery.scrolly.min.js")
+    @Scripts.Render("~/Content/assets/js/jquery.poptrox.min.js")
+    @Scripts.Render("~/Content/assets/js/browser.min.js")
+    @Scripts.Render("~/Content/assets/js/breakpoints.min.js")
+    @Scripts.Render("~/Content/assets/js/util.js")
+    @Scripts.Render("~/Content/assets/js/main.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

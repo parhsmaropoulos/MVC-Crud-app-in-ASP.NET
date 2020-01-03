@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/assets/css/main.css")
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/Content/assets/css/noscript.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="is-preload">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("MVC Library", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tracks
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Tracks", "Index", "Tracks")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Genres", "Index", "Genres")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Play Lists", "Index", "Playlists")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Media Types", "Index", "MediaTypes")</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Artists
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Artists", "Index", "Artists")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Albums", "Index", "Albums")</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Individuals
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Customers", "Index", "Customers")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Employees", "Index", "Employees")</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Invoices
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Invoices", "Index", "Invoices")</a></li>
+                            <li><a class="dropdown-item" href="#">@Html.ActionLink("Invoice Lines", "Index", "InvoiceLines")</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reports
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="~/WebForm/Top10Tracks.aspx">Top 10 Tracks</a></li>
+                            <li><a class="dropdown-item" href="~/WebForm/TopSellingArtist.aspx">Top Selling Artist</a></li>
+                            <li><a class="dropdown-item" href="~/WebForm/TopArtist.aspx">Top Rated Categories</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - MVC Library</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/Content/assets/js/jquery.min.js")
+    @Scripts.Render("~/Content/assets/js/jquery.scrolly.min.js")
+    @Scripts.Render("~/Content/assets/js/jquery.poptrox.min.js")
+    @Scripts.Render("~/Content/assets/js/browser.min.js")
+    @Scripts.Render("~/Content/assets/js/breakpoints.min.js")
+    @Scripts.Render("~/Content/assets/js/util.js")
+    @Scripts.Render("~/Content/assets/js/main.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

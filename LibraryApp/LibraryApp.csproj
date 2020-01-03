@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,10 +46,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\parhs\source\repos\MVCapp\MVCapp\bin\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -124,25 +146,325 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AlbumsController.cs" />
+    <Compile Include="Controllers\ArtistsController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceLinesController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\MediaTypesController.cs" />
+    <Compile Include="Controllers\PlaylistsController.cs" />
+    <Compile Include="Controllers\TracksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Album.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Artist.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Genre.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Invoice.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InvoiceLine.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LibraryModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraryModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LibraryModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LibraryModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MediaType.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Playlist.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TopArtistInDate_Result.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TopCatgsInDate_Result.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TopSongsInDate_Result.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Track.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="WebForm\Top10Tracks.aspx.cs">
+      <DependentUpon>Top10Tracks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm\Top10Tracks.aspx.designer.cs">
+      <DependentUpon>Top10Tracks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm\TopArtist.aspx.cs">
+      <DependentUpon>TopArtist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm\TopArtist.aspx.designer.cs">
+      <DependentUpon>TopArtist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm\TopSellingArtist.aspx.cs">
+      <DependentUpon>TopSellingArtist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm\TopSellingArtist.aspx.designer.cs">
+      <DependentUpon>TopSellingArtist.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\css\fontawesome-all.min.css" />
+    <Content Include="Content\assets\css\images\admin.jpg" />
+    <Content Include="Content\assets\css\images\arrow.svg" />
+    <Content Include="Content\assets\css\images\banner.svg" />
+    <Content Include="Content\assets\css\images\disk.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\1%281%29.txt" />
+    <Content Include="Content\assets\css\images\disk_files\1.txt" />
+    <Content Include="Content\assets\css\images\disk_files\10x3.png" />
+    <Content Include="Content\assets\css\images\disk_files\16x5.png" />
+    <Content Include="Content\assets\css\images\disk_files\16x9.png" />
+    <Content Include="Content\assets\css\images\disk_files\194861-Vocaloid-Hatsune_Miku-white_dress-long_hair-twintails-ribbon-books-Gramophone-flowers-plants-water-sky-clouds-anime_girls-anime-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\1x1.png" />
+    <Content Include="Content\assets\css\images\disk_files\273641-Hard_drives-disk-computer-technology-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\2x3.png" />
+    <Content Include="Content\assets\css\images\disk_files\307626-vinyl-music-Gramophone-The_Beatles-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\309282-Gramophone-vintage-vinyl-technology-music-playing-Speed_blur-circle-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\32x9.png" />
+    <Content Include="Content\assets\css\images\disk_files\334802-women-actress-brunette-long_hair-sitting-Ellen_Page-in_bed-barefoot-monochrome-blouses-vinyl-gramophone-leather_pants-telephone-curtain-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\338625-car-digital_art-night-lights-Moon-gramophone-fire-shelves-water-horizon-nature-dark-speakers-trees-branch-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\348856-monochrome-disk-Hard_drives-computer-hardware-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\356214-hdd-hard-disk-cd-hi-tech-computer-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\365221-music-disk-macro-gramophone-vinyl-748x468.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\382218-doge-memes-Shiba_Inu-Windows_7-Microsoft_Windows-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\3x2.png" />
+    <Content Include="Content\assets\css\images\disk_files\3x4.png" />
+    <Content Include="Content\assets\css\images\disk_files\3x5.png" />
+    <Content Include="Content\assets\css\images\disk_files\411388-photography-macro-depth_of_field-disk-water_drops-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\450366-camera-map-minimalism-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\4x3.png" />
+    <Content Include="Content\assets\css\images\disk_files\4x5.png" />
+    <Content Include="Content\assets\css\images\disk_files\54222-blondes-women-vintage-cars-models-sitting-tuning-disk-girls-with-cars-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\5x2.png" />
+    <Content Include="Content\assets\css\images\disk_files\5x3.png" />
+    <Content Include="Content\assets\css\images\disk_files\5x4.png" />
+    <Content Include="Content\assets\css\images\disk_files\648322-ufo-aliens-dish-radar-clouds-disk-plane-space-strange-landscapes-earth-fake-2-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\660803-ufo-spaceship-disk-lights-aliens-fake-space-galaxy-imaginations-fantasy-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\728887-splashes-wave-splash-stones-porous-sea-rocks-coast-decline-sun-disk-orange-1-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\728887-splashes-wave-splash-stones-porous-sea-rocks-coast-decline-sun-disk-orange-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\8x3.png" />
+    <Content Include="Content\assets\css\images\disk_files\8x5.png" />
+    <Content Include="Content\assets\css\images\disk_files\993808-eadphones-dj-deejay-gramophone-record-music-girls-300x200.jpg" />
+    <Content Include="Content\assets\css\images\disk_files\ads%281%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\ads%282%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\ads%283%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\ads.html" />
+    <Content Include="Content\assets\css\images\disk_files\anchor.html" />
+    <Content Include="Content\assets\css\images\disk_files\black_white.png" />
+    <Content Include="Content\assets\css\images\disk_files\bootstrap.min.css" />
+    <Content Include="Content\assets\css\images\disk_files\brightness.png" />
+    <Content Include="Content\assets\css\images\disk_files\cache.skin-d94403a4ccec961839124824c6d16205.css" />
+    <Content Include="Content\assets\css\images\disk_files\contrast.png" />
+    <Content Include="Content\assets\css\images\disk_files\cookie_push%281%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\cookie_push.html" />
+    <Content Include="Content\assets\css\images\disk_files\f%281%29.txt" />
+    <Content Include="Content\assets\css\images\disk_files\f%282%29.txt" />
+    <Content Include="Content\assets\css\images\disk_files\f%283%29.txt" />
+    <Content Include="Content\assets\css\images\disk_files\f%284%29.txt" />
+    <Content Include="Content\assets\css\images\disk_files\f%285%29.txt" />
+    <Content Include="Content\assets\css\images\disk_files\f%286%29.txt" />
+    <Content Include="Content\assets\css\images\disk_files\f%287%29.txt" />
+    <Content Include="Content\assets\css\images\disk_files\f.txt" />
+    <Content Include="Content\assets\css\images\disk_files\facets.min-3.1.4.css" />
+    <Content Include="Content\assets\css\images\disk_files\flip_horizontal.png" />
+    <Content Include="Content\assets\css\images\disk_files\flip_vertical.png" />
+    <Content Include="Content\assets\css\images\disk_files\font-awesome.min.css" />
+    <Content Include="Content\assets\css\images\disk_files\icomoon-4b91b52b4993ee6fa8dc128dd31fad40.css" />
+    <Content Include="Content\assets\css\images\disk_files\it.gif" />
+    <Content Include="Content\assets\css\images\disk_files\jquery-ui-1.9.2.custom.min-1.9.2.css" />
+    <Content Include="Content\assets\css\images\disk_files\negate.png" />
+    <Content Include="Content\assets\css\images\disk_files\reset.png" />
+    <Content Include="Content\assets\css\images\disk_files\s%281%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\s.html" />
+    <Content Include="Content\assets\css\images\disk_files\saved_resource%282%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\saved_resource%283%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\saved_resource%284%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\saved_resource%285%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\saved_resource%286%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\saved_resource%287%29.html" />
+    <Content Include="Content\assets\css\images\disk_files\saved_resource.html" />
+    <Content Include="Content\assets\css\images\disk_files\sh.f48a1a04fe8dbf021b4cda1d.html" />
+    <Content Include="Content\assets\css\images\disk_files\style-ecc470e59bbcb567419b5f4a1e4859c1.css" />
+    <Content Include="Content\assets\css\images\disk_files\style.css" />
+    <Content Include="Content\assets\css\images\disk_files\style.min.css" />
+    <Content Include="Content\assets\css\images\disk_files\styles-db68b7fc0c9a46c776d50df6e8f2b498.css" />
+    <Content Include="Content\assets\css\images\disk_files\styles__ltr.css" />
+    <Content Include="Content\assets\css\images\disk_files\wallup_logo.png" />
+    <Content Include="Content\assets\css\images\disk_files\zrt_lookup.html" />
+    <Content Include="Content\assets\css\images\loader.gif" />
+    <Content Include="Content\assets\css\images\overlay.png" />
+    <Content Include="Content\assets\css\images\poptrox-closer.svg" />
+    <Content Include="Content\assets\css\images\poptrox-nav.svg" />
+    <Content Include="Content\assets\css\main.css" />
+    <Content Include="Content\assets\css\noscript.css" />
+    <Content Include="Content\assets\js\breakpoints.min.js" />
+    <Content Include="Content\assets\js\browser.min.js" />
+    <Content Include="Content\assets\js\jquery.min.js" />
+    <Content Include="Content\assets\js\jquery.poptrox.min.js" />
+    <Content Include="Content\assets\js\jquery.scrolly.min.js" />
+    <Content Include="Content\assets\js\main.js" />
+    <Content Include="Content\assets\js\util.js" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.svg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\LibraryModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
+      <LastGenOutput>LibraryModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LibraryModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
+      <LastGenOutput>LibraryModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebForm\Top10Tracks.aspx" />
+    <Content Include="WebForm\TopArtist.aspx" />
+    <Content Include="WebForm\TopSellingArtist.aspx" />
+    <EntityDeploy Include="Models\LibraryModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LibraryModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LibraryModel.edmx.diagram">
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\assets\css\images\disk_files\addthis_widget.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\analytics.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\api.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\autocomplete.min-1.11.4.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\core.min-1.11.4.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\count%281%29.json" />
+    <Content Include="Content\assets\css\images\disk_files\count.json" />
+    <Content Include="Content\assets\css\images\disk_files\css" />
+    <Content Include="Content\assets\css\images\disk_files\dUg2RX0dt0dTTlbc5xuaFyZXJEpJwtNdyW4dnj8sSFk.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\facets.min-3.1.4.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\frontend-7ab8323d5142a5cf82caa483ecd2d4e2.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\info%281%29.json" />
+    <Content Include="Content\assets\css\images\disk_files\info.json" />
+    <Content Include="Content\assets\css\images\disk_files\jquery-1.11.3.min.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\jquery-1.12.4-wp.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\jquery-migrate.min-1.4.1.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\js" />
+    <Content Include="Content\assets\css\images\disk_files\layers.ab5cd98fe1b9a38a4a9f.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\menu.min-1.11.4.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\moatframe.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\osd.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\osd_listener.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\platform.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\position.min-1.11.4.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\R5ZafKr0PlZ7OmGMCk95d__fihE5gBkhkjuiGGCKDDU.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\recaptcha__en_gb.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\saved_resource" />
+    <Content Include="Content\assets\css\images\disk_files\saved_resource%281%29" />
+    <Content Include="Content\assets\css\images\disk_files\scripts-7d2891bb319f5d7497ca2e47e80c51eb.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\scroll-to-top-f6fa9eb8de324885d4f6f17abcaca36c.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\search-autocomplete.min-1.0.0.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\shares%281%29.json" />
+    <Content Include="Content\assets\css\images\disk_files\shares.json" />
+    <Content Include="Content\assets\css\images\disk_files\underscore.min-1.8.3.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\view-0ad6eb122b4fe0481ae4e7a1f43ef167.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\widget.min-1.11.4.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\wp-a11y.min.js.αρχείο λήψης" />
+    <Content Include="Content\assets\css\images\disk_files\wp-sanitize.min.js.αρχείο λήψης" />
+    <Content Include="Content\assets\sass\libs\_breakpoints.scss" />
+    <Content Include="Content\assets\sass\libs\_functions.scss" />
+    <Content Include="Content\assets\sass\libs\_html-grid.scss" />
+    <Content Include="Content\assets\sass\libs\_mixins.scss" />
+    <Content Include="Content\assets\sass\libs\_vars.scss" />
+    <Content Include="Content\assets\sass\libs\_vendor.scss" />
+    <Content Include="Content\assets\sass\main.scss" />
+    <Content Include="Content\assets\sass\noscript.scss" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.woff2" />
+    <Content Include="App_Start\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Start\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="App_Start\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -168,10 +490,62 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Albums\Create.cshtml" />
+    <Content Include="Views\Albums\Delete.cshtml" />
+    <Content Include="Views\Albums\Details.cshtml" />
+    <Content Include="Views\Albums\Edit.cshtml" />
+    <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\Artists\Create.cshtml" />
+    <Content Include="Views\Artists\Delete.cshtml" />
+    <Content Include="Views\Artists\Details.cshtml" />
+    <Content Include="Views\Artists\Edit.cshtml" />
+    <Content Include="Views\Artists\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Genres\Create.cshtml" />
+    <Content Include="Views\Genres\Delete.cshtml" />
+    <Content Include="Views\Genres\Details.cshtml" />
+    <Content Include="Views\Genres\Edit.cshtml" />
+    <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\InvoiceLines\Create.cshtml" />
+    <Content Include="Views\InvoiceLines\Delete.cshtml" />
+    <Content Include="Views\InvoiceLines\Details.cshtml" />
+    <Content Include="Views\InvoiceLines\Edit.cshtml" />
+    <Content Include="Views\InvoiceLines\Index.cshtml" />
+    <Content Include="Views\MediaTypes\Create.cshtml" />
+    <Content Include="Views\MediaTypes\Delete.cshtml" />
+    <Content Include="Views\MediaTypes\Details.cshtml" />
+    <Content Include="Views\MediaTypes\Edit.cshtml" />
+    <Content Include="Views\MediaTypes\Index.cshtml" />
+    <Content Include="Views\Playlists\Create.cshtml" />
+    <Content Include="Views\Playlists\Delete.cshtml" />
+    <Content Include="Views\Playlists\Details.cshtml" />
+    <Content Include="Views\Playlists\Edit.cshtml" />
+    <Content Include="Views\Playlists\Index.cshtml" />
+    <Content Include="Views\Tracks\Create.cshtml" />
+    <Content Include="Views\Tracks\Delete.cshtml" />
+    <Content Include="Views\Tracks\Details.cshtml" />
+    <Content Include="Views\Tracks\Edit.cshtml" />
+    <Content Include="Views\Tracks\Index.cshtml" />
+    <Content Include="Views\Shared\_CreateLayout.cshtml" />
+    <Content Include="Views\Shared\_ListsLayout.cshtml" />
+    <Content Include="Views\Shared\del_editLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -185,6 +559,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\Top10Tracks.rdlc" />
+    <EmbeddedResource Include="Reports\TopArtistByDate.rdlc" />
+    <EmbeddedResource Include="Reports\TopSellingArtist.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -219,7 +601,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
